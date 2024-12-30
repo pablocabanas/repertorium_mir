@@ -6,7 +6,7 @@ This algorithm detects the sequence of chants present in images of music medieva
 
 <p align="center">
 <img src="./blocks.png" alt="Block diagram of chant detection algorithm"
-width="343px"></p>
+width="600px"></p>
 
 ## Requirements
 
