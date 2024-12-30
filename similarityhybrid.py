@@ -28,6 +28,7 @@ LYRICS_MIN_SCORE = 0.25
 
 # global variables
 sequence_foralign = ''
+max_alignments = 1
 
 # local aligner
 aligner = PairwiseAligner()
@@ -357,7 +358,7 @@ def align_chant(canto):
     start = []
     end = []
 
-    max_alignments = 1
+    # max_alignments = 1
 
     if len(canto) == 0:
         return (score, start, end)
@@ -369,6 +370,8 @@ def align_chant(canto):
             return (score, start, end) 
     except:
         return (score, start, end)
+    
+    rangos = []
 
     for i, alignment in enumerate(alignments):
         if i >= max_alignments:
@@ -377,8 +380,15 @@ def align_chant(canto):
         scorei = alignment.score / len(canto)
         starti = alignment.aligned[0][0][0]
         endi = alignment.aligned[0][-1][-1]
-        # starti, endi = alignment.aligned[0][0]
-        # scorei = alignment.score / max(1, abs((endi-starti)-len(canto)))
+
+        enrango = False
+        for rango in rangos:
+            if starti in rango or endi-1 in rango:
+                enrango = True
+                break;
+        if enrango:
+            break;
+        rangos.append(range(starti, endi))
 
         score.append(scorei)
         start.append(starti)
@@ -496,6 +506,7 @@ def compute_similarity_hybrid(source, numfolios=-1):
     dictionary, cantusid = get_chant_fulltext()
 
     global sequence_foralign
+    global max_alignments
 
     #--------------------------------------------------------------------
     # Alignment score matrix (music)
@@ -508,6 +519,7 @@ def compute_similarity_hybrid(source, numfolios=-1):
 
     # Local alignment (music)
     sequence_foralign = sequence_musicdiff
+    max_alignments = 1
     with Pool(cpu_count()) as pool:
         results = list(tqdm(pool.imap(align_chant, dictionary_music),
                             total=len(dictionary_music)))
@@ -543,6 +555,7 @@ def compute_similarity_hybrid(source, numfolios=-1):
 
     # Local alignment (lyrics)
     sequence_foralign = sequence
+    max_alignments = 10
     with Pool(cpu_count()) as pool:
         results = list(tqdm(pool.imap(align_chant, dictionary),
                             total=len(dictionary)))
