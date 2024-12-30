@@ -1,0 +1,13 @@
+numpy
+matplotlib
+scikit-learn
+fire
+lightning
+torchinfo
+wandb>=0.12.10
+jiwer
+biopython
+tqdm
+pillow
+pyyaml
+beautifulsoup4

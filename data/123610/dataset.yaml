@@ -1,0 +1,5 @@
+names: null
+path: ./data/123610
+test: images/test
+train: images/train
+val: images/validation

@@ -1,0 +1,6 @@
+weights/best.pt filter=lfs diff=lfs merge=lfs -text
+weights/repertorium_aligned_char_crnn_greedy.ckpt filter=lfs diff=lfs merge=lfs -text
+weights/repertorium_lyrics_char_crnn_greedy.ckpt filter=lfs diff=lfs merge=lfs -text
+weights/repertorium_music_char_crnn_greedy.ckpt filter=lfs diff=lfs merge=lfs -text
+storage/chant_info.db filter=lfs diff=lfs merge=lfs -text
+storage/dictionary_melody.pkl filter=lfs diff=lfs merge=lfs -text
