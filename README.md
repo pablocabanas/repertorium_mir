@@ -26,5 +26,8 @@ on each folio (detailing their lyrics, notes, Cantus ID, position in the folio a
 You can also provide your own folder of manuscript images by selecting the option *Select folder*.
 Just make sure the images are in `.png` format and named sequentially.
 
+## Example
+
+Results for the manuscript *123610* can be seen [here](https://pablocabanas.github.io/repertorium_mir/).
 
 > **Note:** The OMR models are still in development.
